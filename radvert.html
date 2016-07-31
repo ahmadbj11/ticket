@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>ORBICOM > advertisement</title>
+<meta http-equiv="refresh" content="2; url=$(link-orig)">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<link rel="shortcut icon" href="img/favicon.ico"/>
+<link rel="stylesheet" href="orbicom.css" type="text/css" media="screen" />
+<script language="JavaScript">
+<!--
+    var popup = '';
+    function openOrig() {
+	if (window.focus) popup.focus();
+	location.href = '$(link-orig)';
+    }
+    function openAd() {
+	location.href = '$(link-redirect)';
+    }
+    function openAdvert() {
+	if (window.name != 'hotspot_advert') {
+		popup = open('$(link-redirect)', 'hotspot_advert', '');
+		setTimeout("openOrig()", 1000);
+		return;
+	}
+	setTimeout("openAd()", 1000);
+    }
+//-->
+</script>
+</head>
+<body onLoad="openAdvert()">
+<center>
+<table class="main" width="100%" height="642">
+<tr>
+	<td align="center" valign="middle">
+	Advertisement.
+	<br><br>
+	If nothing happens, open
+	<a href="$(link-redirect)" target="hotspot_advert">advertisement</a>
+	manually.
+	</td>
+</tr>
+	<tr height="170" valign="bottom"><td>&nbsp;</td></tr>
+	<tr height="50 valign="bottom"><td align="center">
+		<div class="footer">Hotspot<a href="http://www.orbicom.net.id"><font style="font-size: 10px; font-family: verdana; font-weight: bold; color: purple;"> ORBICOM</font></a>. &copy; Copy Right 2016<br />
+	</td></tr>
+</table>
+</center>
+</html>

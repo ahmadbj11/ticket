@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>ORBICOM status</title>
+$(if refresh-timeout)
+<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+$(endif)
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<link rel="shortcut icon" href="img/favicon.ico"/>
+<link rel="stylesheet" href="orbicom.css" type="text/css" media="screen" />
+
+<script language="JavaScript">
+<!--
+$(if advert-pending == 'yes')
+    var popup = '';
+    function focusAdvert() {
+	if (window.focus) popup.focus();
+    }
+    function openAdvert() {
+	popup = open('$(link-advert)', 'hotspot_advert', '');
+	setTimeout("focusAdvert()", 1000);
+    }
+$(endif)
+    function openLogout() {
+	if (window.name != 'hotspot_status') return true;
+        open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+	window.close();
+	return false;
+    }
+//-->
+</script>
+</head>
+<body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0"
+$(if advert-pending == 'yes')
+	onLoad="openAdvert()"
+$(endif)
+>
+<center>
+<table class="main-status" width="100%">
+	<tr height="30"><td colspan="2">
+		<div class="menu"><ul><li><a href="status">Home</a></li>
+		<li><a href="paket.html">paket</a></li>
+		<li><a href="benefit.html">Benefits</a></li>
+		<li><a href="contact.html">Contact Us</a></li>
+		</ul></div>
+		</td>
+	</tr>
+	<tr><td valign="top">
+		<table>
+			<tr height="435"><td valign="top" width="400">
+			<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+				<table class="tabula" valign="top">
+					<tr><td colspan="2" valign="top">
+						$(if login-by == 'trial')
+							<div class="notice">Welcome trial user!</div><br>
+						$(elif login-by != 'mac')
+							<br><div class="notice">Welcome back,<b> $(username)!</b></div><br>
+						$(endif)
+					</td></tr>
+					<tr><td colspan="2" align="center"><font style="color: red; font-weight: bold; font-size: 16px;">Account Information</font></td></tr>
+					<tr><td><table class="data">
+					<tr><td align="right">IP address :</td><td>$(ip)</td></tr>
+					<tr><td align="right">MAC address :</td><td>$(mac)</td></tr>
+					<tr><td align="right">bytes up/down :</td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
+				$(if session-time-left)
+					<tr><td align="right">Uptime/connected :</td><td>$(uptime)</td></tr>
+					<tr><td align="right"><font style="color: red; font-weight: bold;">Sisa Waktu Koneksi :</font></td><td><font style="color: red; font-weight: bold; font-size: 15px;">$(session-time-left)</font></td></tr>	
+				$(else)
+					<tr><td align="right">connected :</td><td>$(uptime)</td></tr>
+				$(endif)
+				$(if blocked == 'yes')
+					<tr><td align="right">status :</td><td><div style="color: #FF8080">
+					<a href="$(link-advert)" target="hotspot_advert">advertisement</a> required</div></td>
+				$(elif refresh-timeout)
+					<tr><td align="right">status refresh :</td><td>$(refresh-timeout)</td>
+				$(endif)
+				</table>
+				$(if login-by-mac != 'yes')
+				<br>
+				<!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
+				<button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
+				<!-- end of user manager link -->
+				<input type="submit" class="button" value="Logout">
+				$(endif)
+			</form>
+			</td></tr>
+		</table></td>
+	<td width="550" valign="top" class="judul-update"><table class="boxiklan">
+					<tr><td align="center">
+					<iklan>"MAU INTERNET CEPAT DAN TIDAK LELET?"<p>
+					"MAU INTERNET TIDAK PUTUS?"<p>
+					Kini ORBICOM Hadir dengan HIGH SPEED Dan UNLIMITED QUOTA<br><a href="contact.html" target="_blank" >Join To Us Click Here</a></iklan>
+					</td></tr>
+					</table>
+	</tr>
+	<tr height="75" valign="top"><td align="center" colspan="2">
+		<div class="footer">Hotspot<a href="http://www.orbicom.net.id"><font style="font-size: 10px; font-family: verdana; font-weight: bold; color: purple;"> ORBICOM</font></a>. &copy; Copy Right 2016<br />
+	</td></tr>
+</table>
+</center>
+</body>
+</html>
